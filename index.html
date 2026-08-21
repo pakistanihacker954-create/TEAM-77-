@@ -7,22 +7,15 @@
 <title>TEAM 77</title>
 
 <style>
+
+/* =====================================================
+   TEAM 77 — GLOBAL
+===================================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-:root{
-    --bg:#03050a;
-    --card:rgba(13,18,30,.72);
-    --blue:#4da3ff;
-    --cyan:#6ee7ff;
-    --purple:#8b5cf6;
-    --pink:#d946ef;
-    --white:#f5f8ff;
-    --muted:#8c96a8;
-    --line:rgba(255,255,255,.09);
 }
 
 html{
@@ -30,107 +23,243 @@ html{
 }
 
 body{
-    background:var(--bg);
-    color:var(--white);
-    font-family:Arial,Helvetica,sans-serif;
+    background:#07090d;
+    color:#c9d0d8;
+    font-family:Arial, Helvetica, sans-serif;
     overflow-x:hidden;
 }
 
-/* ================= LIVE BACKGROUND ================= */
+:root{
+    --charcoal:#242a31;
+    --dark:#07090d;
+    --dark2:#0c1118;
+    --blue:#3da9ff;
+    --cyan:#72e8ff;
+    --purple:#7657ff;
+    --line:rgba(114,232,255,.16);
+    --muted:#7f8a98;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 .background{
     position:fixed;
     inset:0;
-    z-index:-10;
+    z-index:-20;
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(40,110,180,.12),
+            transparent 48%
+        ),
+        #07090d;
     overflow:hidden;
-    background:#03050a;
 }
 
-.orb{
+.glow{
     position:absolute;
+
     width:450px;
     height:450px;
+
     border-radius:50%;
-    filter:blur(100px);
-    opacity:.23;
-    animation:orbMove 12s infinite alternate ease-in-out;
+
+    filter:blur(130px);
+
+    opacity:.12;
+
+    animation:moveGlow 15s infinite alternate ease-in-out;
 }
 
-.orb.one{
-    background:#2563eb;
-    left:-150px;
-    top:-100px;
+.glow.one{
+    background:#1677ff;
+    left:-200px;
+    top:-150px;
 }
 
-.orb.two{
-    background:#7c3aed;
-    right:-150px;
-    top:25%;
-    animation-delay:2s;
-}
-
-.orb.three{
-    background:#0891b2;
-    left:25%;
-    bottom:-250px;
+.glow.two{
+    background:#714bff;
+    right:-220px;
+    top:30%;
     animation-delay:4s;
 }
 
-@keyframes orbMove{
+.glow.three{
+    background:#00cfff;
+    left:35%;
+    bottom:-300px;
+    animation-delay:7s;
+}
+
+@keyframes moveGlow{
+
     from{
         transform:translate(0,0) scale(1);
     }
 
     to{
-        transform:translate(100px,-60px) scale(1.2);
+        transform:translate(100px,-80px) scale(1.25);
     }
+
 }
 
+
+/* =====================================================
+   GRID
+===================================================== */
+
 .grid{
-    position:absolute;
+    position:fixed;
     inset:0;
+    z-index:-15;
+    pointer-events:none;
 
     background-image:
         linear-gradient(
-            rgba(255,255,255,.025) 1px,
+            rgba(255,255,255,.018) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(255,255,255,.025) 1px,
+            rgba(255,255,255,.018) 1px,
             transparent 1px
         );
 
     background-size:55px 55px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 90%
-        );
 }
 
-/* ================= NAV ================= */
+
+/* =====================================================
+   RAIN
+===================================================== */
+
+.rain{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    pointer-events:none;
+    overflow:hidden;
+    opacity:.30;
+}
+
+.drop{
+    position:absolute;
+
+    top:-50px;
+
+    width:1px;
+    height:30px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(114,232,255,.7)
+        );
+
+    animation:rainFall linear infinite;
+}
+
+@keyframes rainFall{
+
+    from{
+        transform:translateY(-60px);
+    }
+
+    to{
+        transform:translateY(110vh);
+    }
+
+}
+
+
+/* =====================================================
+   LIGHTNING
+===================================================== */
+
+.lightning{
+    position:fixed;
+    inset:0;
+
+    z-index:-5;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(160,220,255,.8),
+            rgba(255,255,255,.25),
+            transparent 60%
+        );
+
+    opacity:0;
+
+    mix-blend-mode:screen;
+}
+
+.lightning.flash{
+    animation:lightningFlash .45s ease;
+}
+
+@keyframes lightningFlash{
+
+    0%{
+        opacity:0;
+    }
+
+    8%{
+        opacity:.8;
+    }
+
+    15%{
+        opacity:.05;
+    }
+
+    27%{
+        opacity:.45;
+    }
+
+    42%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 nav{
     position:fixed;
+
     top:0;
     left:0;
     right:0;
 
-    height:72px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    height:70px;
 
     padding:0 7%;
 
-    background:rgba(3,5,10,.55);
-    backdrop-filter:blur(20px);
+    display:flex;
 
-    border-bottom:1px solid var(--line);
+    align-items:center;
+    justify-content:space-between;
+
+    background:
+        rgba(7,9,13,.72);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid var(--line);
 
     z-index:1000;
 }
@@ -140,8 +269,12 @@ nav{
     align-items:center;
     gap:10px;
 
-    font-size:15px;
+    color:#d6dce3;
+
+    font-size:14px;
+
     font-weight:900;
+
     letter-spacing:2px;
 }
 
@@ -150,66 +283,77 @@ nav{
     height:38px;
 
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 
-    border:1px solid rgba(77,163,255,.55);
+    border:
+        1px solid
+        rgba(114,232,255,.4);
 
     color:var(--cyan);
 
     box-shadow:
-        0 0 25px rgba(77,163,255,.15);
+        0 0 20px
+        rgba(61,169,255,.15);
 }
 
 .navlinks{
     display:flex;
-    gap:28px;
+    gap:27px;
 }
 
 .navlinks a{
-    color:#9aa4b5;
+    color:#747f8d;
 
     text-decoration:none;
 
-    font-size:9px;
+    font-size:8px;
+
     font-weight:bold;
 
-    letter-spacing:1.7px;
+    letter-spacing:1.6px;
 
     transition:.3s;
 }
 
 .navlinks a:hover{
-    color:white;
+    color:var(--cyan);
+
+    text-shadow:
+        0 0 12px
+        rgba(114,232,255,.7);
 }
 
-.join-nav{
-    color:var(--cyan)!important;
-}
 
-/* ================= HERO ================= */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
     min-height:100vh;
 
     display:flex;
-    align-items:center;
+
     justify-content:center;
+    align-items:center;
 
     text-align:center;
 
-    padding:120px 20px 80px;
+    padding:
+        120px 20px 80px;
 
     position:relative;
 }
 
 .hero-content{
-    max-width:950px;
+    max-width:1000px;
 
-    animation:heroIn 1.3s ease;
+    animation:
+        heroIn 1.3s ease;
 }
 
 @keyframes heroIn{
+
     from{
         opacity:0;
         transform:translateY(35px);
@@ -219,70 +363,103 @@ nav{
         opacity:1;
         transform:translateY(0);
     }
+
 }
 
 .hero-label{
-    font-size:10px;
-
-    letter-spacing:5px;
+    margin-bottom:25px;
 
     color:var(--cyan);
 
-    margin-bottom:25px;
+    font-size:9px;
 
-    animation:pulseText 2s infinite;
-}
+    letter-spacing:5px;
 
-@keyframes pulseText{
-    50%{
-        opacity:.55;
-    }
+    text-shadow:
+        0 0 12px
+        rgba(114,232,255,.7);
 }
 
 .hero h1{
-    font-size:clamp(55px,10vw,125px);
+    font-size:
+        clamp(48px,9vw,115px);
 
-    line-height:.9;
+    line-height:.92;
 
-    letter-spacing:-7px;
+    letter-spacing:-6px;
 
     font-weight:950;
+
+    color:#d6dbe0;
 }
 
 .gradient-text{
     background:
         linear-gradient(
             90deg,
-            #fff,
-            #6ee7ff,
-            #8b5cf6,
-            #fff
+            #b8c0c8,
+            #72e8ff,
+            #8b76ff,
+            #72e8ff,
+            #b8c0c8
         );
 
-    background-size:250% auto;
+    background-size:300% auto;
 
     -webkit-background-clip:text;
     background-clip:text;
 
     color:transparent;
 
-    animation:gradientMove 5s linear infinite;
+    animation:
+        gradientMove 5s linear infinite;
 }
 
 @keyframes gradientMove{
+
     to{
-        background-position:250% center;
+        background-position:
+            300% center;
     }
+
+}
+
+.electric-text{
+    text-shadow:
+        0 0 5px #fff,
+        0 0 15px #37a8ff,
+        0 0 35px #1976ff;
+
+    animation:
+        electricGlow 2.5s infinite;
+}
+
+@keyframes electricGlow{
+
+    0%,100%{
+        text-shadow:
+            0 0 5px #fff,
+            0 0 15px #37a8ff,
+            0 0 35px #1976ff;
+    }
+
+    50%{
+        text-shadow:
+            0 0 3px #fff,
+            0 0 8px #72e8ff,
+            0 0 20px #2f9cff;
+    }
+
 }
 
 .hero p{
-    max-width:600px;
+    max-width:620px;
 
     margin:30px auto;
 
-    color:var(--muted);
+    color:#707b89;
 
-    font-size:13px;
+    font-size:12px;
 
     line-height:1.9;
 }
@@ -298,7 +475,8 @@ nav{
 }
 
 .btn{
-    padding:15px 25px;
+    padding:
+        15px 26px;
 
     border-radius:5px;
 
@@ -321,37 +499,41 @@ nav{
     background:
         linear-gradient(
             90deg,
-            #2563eb,
-            #7c3aed
+            #1677ff,
+            #713cff
         );
 
     box-shadow:
-        0 0 30px rgba(59,130,246,.18);
-}
-
-.primary:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 15px 40px rgba(59,130,246,.25);
+        0 0 30px
+        rgba(47,156,255,.18);
 }
 
 .secondary{
-    background:rgba(255,255,255,.03);
+    background:
+        rgba(255,255,255,.025);
 
-    border:1px solid var(--line);
+    border:
+        1px solid var(--line);
 
-    color:white;
+    color:#c5ccd4;
 }
 
-.secondary:hover{
-    border-color:rgba(110,231,255,.5);
+.btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(47,156,255,.2);
 }
 
-/* ================= SECTIONS ================= */
+
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 section{
-    padding:110px 7%;
+    padding:
+        110px 7%;
 }
 
 .section-head{
@@ -363,7 +545,7 @@ section{
 .section-head small{
     color:var(--cyan);
 
-    font-size:9px;
+    font-size:8px;
 
     letter-spacing:4px;
 }
@@ -371,7 +553,10 @@ section{
 .section-head h2{
     margin-top:12px;
 
-    font-size:clamp(32px,5vw,55px);
+    color:#cbd1d7;
+
+    font-size:
+        clamp(32px,5vw,55px);
 
     letter-spacing:-2px;
 }
@@ -379,66 +564,52 @@ section{
 .section-head p{
     max-width:600px;
 
-    margin:16px auto;
+    margin:15px auto;
 
-    color:var(--muted);
+    color:#727d8b;
 
-    font-size:12px;
+    font-size:11px;
 
     line-height:1.8;
 }
 
-/* ================= OWNER ================= */
+
+/* =====================================================
+   OWNER
+===================================================== */
 
 .owner-card{
     max-width:1000px;
 
     margin:auto;
 
-    position:relative;
-
     padding:50px;
 
-    border:1px solid rgba(77,163,255,.2);
+    border:
+        1px solid var(--line);
 
     background:
         linear-gradient(
             135deg,
-            rgba(37,99,235,.12),
-            rgba(124,58,237,.06),
+            rgba(40,80,120,.10),
             rgba(255,255,255,.015)
         );
 
-    overflow:hidden;
-
     border-radius:14px;
-}
-
-.owner-card::after{
-    content:"77";
-
-    position:absolute;
-
-    right:-20px;
-    bottom:-75px;
-
-    font-size:230px;
-
-    font-weight:900;
-
-    color:rgba(255,255,255,.025);
 }
 
 .owner-label{
     color:var(--cyan);
 
-    font-size:9px;
+    font-size:8px;
 
     letter-spacing:4px;
 }
 
 .owner-name{
     margin-top:15px;
+
+    color:#cbd1d7;
 
     font-size:52px;
 
@@ -454,14 +625,17 @@ section{
 
     max-width:600px;
 
-    color:var(--muted);
+    color:#737f8d;
 
-    font-size:12px;
+    font-size:11px;
 
     line-height:1.8;
 }
 
-/* ================= MEMBERS ================= */
+
+/* =====================================================
+   MEMBERS
+===================================================== */
 
 .member-grid{
     max-width:1100px;
@@ -477,14 +651,15 @@ section{
 }
 
 .member{
-    min-height:190px;
+    min-height:205px;
 
     padding:25px;
 
-    border:1px solid var(--line);
+    border:
+        1px solid var(--line);
 
     background:
-        rgba(255,255,255,.025);
+        rgba(255,255,255,.018);
 
     border-radius:12px;
 
@@ -495,41 +670,19 @@ section{
     transition:.35s;
 }
 
-.member::before{
-    content:"";
-
-    position:absolute;
-
-    width:100px;
-    height:100px;
-
-    border-radius:50%;
-
-    background:#2563eb;
-
-    filter:blur(60px);
-
-    opacity:0;
-
-    right:-30px;
-    top:-30px;
-
-    transition:.4s;
-}
-
 .member:hover{
-    transform:translateY(-7px);
+    transform:translateY(-6px);
 
     border-color:
-        rgba(110,231,255,.3);
-}
+        rgba(114,232,255,.38);
 
-.member:hover::before{
-    opacity:.4;
+    box-shadow:
+        0 15px 45px
+        rgba(0,120,255,.08);
 }
 
 .member-number{
-    color:#596273;
+    color:#505b68;
 
     font-size:8px;
 
@@ -537,32 +690,50 @@ section{
 }
 
 .member h3{
-    margin-top:50px;
+    margin-top:38px;
 
-    font-size:20px;
+    color:#bfc6ce;
 
-    position:relative;
+    font-size:19px;
 }
 
 .member h3 span{
     color:var(--cyan);
 }
 
+.member-talent{
+    margin-top:9px;
+
+    color:#72e8ff;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    text-shadow:
+        0 0 10px
+        rgba(114,232,255,.5);
+}
+
 .member-status{
     position:absolute;
 
     bottom:22px;
-
     left:25px;
 
-    color:#687386;
+    color:#4f5a67;
 
-    font-size:8px;
+    font-size:7px;
 
     letter-spacing:2px;
 }
 
-/* ================= PROCESS ================= */
+
+/* =====================================================
+   PROCESS
+===================================================== */
 
 .process{
     max-width:1050px;
@@ -580,11 +751,13 @@ section{
 .process-card{
     padding:32px;
 
-    min-height:210px;
+    min-height:205px;
 
-    border:1px solid var(--line);
+    border:
+        1px solid var(--line);
 
-    background:rgba(255,255,255,.02);
+    background:
+        rgba(255,255,255,.018);
 
     border-radius:12px;
 
@@ -592,16 +765,16 @@ section{
 }
 
 .process-card:hover{
-    border-color:
-        rgba(77,163,255,.3);
-
     transform:translateY(-5px);
+
+    border-color:
+        rgba(114,232,255,.35);
 }
 
 .process-number{
-    font-size:11px;
-
     color:var(--cyan);
+
+    font-size:10px;
 
     font-weight:bold;
 
@@ -611,26 +784,31 @@ section{
 .process-card h3{
     margin-top:30px;
 
-    font-size:20px;
+    color:#bec6ce;
+
+    font-size:19px;
 }
 
 .process-card p{
     margin-top:12px;
 
-    color:var(--muted);
+    color:#707b88;
 
-    font-size:11px;
+    font-size:10px;
 
     line-height:1.8;
 }
 
-/* ================= FORM ================= */
+
+/* =====================================================
+   FORM
+===================================================== */
 
 .form-section{
     background:
         radial-gradient(
             circle at center,
-            rgba(59,130,246,.09),
+            rgba(50,130,210,.07),
             transparent 55%
         );
 }
@@ -642,17 +820,15 @@ section{
 
     padding:45px;
 
-    border:1px solid var(--line);
+    border:
+        1px solid var(--line);
 
     background:
-        rgba(5,8,15,.75);
+        rgba(7,10,15,.82);
 
     backdrop-filter:blur(20px);
 
     border-radius:14px;
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.3);
 }
 
 .form-grid{
@@ -677,7 +853,7 @@ section{
 }
 
 label{
-    color:#8e99aa;
+    color:#737e8b;
 
     font-size:8px;
 
@@ -693,25 +869,24 @@ textarea{
 
     padding:15px;
 
-    border:1px solid var(--line);
+    border:
+        1px solid var(--line);
 
     outline:none;
 
-    background:#060912;
+    background:#0a0e14;
 
-    color:white;
+    color:#c5ccd4;
 
     border-radius:5px;
 
-    font-size:11px;
+    font-size:10px;
 
     font-family:inherit;
-
-    transition:.25s;
 }
 
 textarea{
-    min-height:120px;
+    min-height:115px;
 
     resize:vertical;
 }
@@ -720,11 +895,11 @@ input:focus,
 select:focus,
 textarea:focus{
     border-color:
-        rgba(77,163,255,.65);
+        rgba(114,232,255,.55);
 
     box-shadow:
         0 0 0 3px
-        rgba(77,163,255,.06);
+        rgba(61,169,255,.05);
 }
 
 .agree{
@@ -734,17 +909,13 @@ textarea:focus{
 
     margin-top:20px;
 
-    color:#697487;
+    color:#5f6b79;
 
-    font-size:9px;
-
-    line-height:1.6;
+    font-size:8px;
 }
 
 .agree input{
     width:auto;
-
-    accent-color:#4da3ff;
 }
 
 .submit{
@@ -761,8 +932,8 @@ textarea:focus{
     background:
         linear-gradient(
             90deg,
-            #2563eb,
-            #7c3aed
+            #1677ff,
+            #713cff
         );
 
     color:white;
@@ -786,7 +957,313 @@ textarea:focus{
         rgba(59,130,246,.2);
 }
 
-/* ================= SUCCESS ================= */
+
+/* =====================================================
+   AFTER JOINING — FLOWERS + BALLOONS
+===================================================== */
+
+.after-join{
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(50,100,170,.10),
+            transparent 60%
+        );
+}
+
+
+/* FLOWERS */
+
+.flowers{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+}
+
+.flower{
+    position:absolute;
+
+    top:-40px;
+
+    width:12px;
+    height:16px;
+
+    border-radius:
+        70% 20% 70% 20%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b7dfff,
+            #4d9dff
+        );
+
+    opacity:.55;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(80,170,255,.5)
+        );
+
+    animation:
+        flowerFall linear infinite;
+}
+
+@keyframes flowerFall{
+
+    0%{
+        transform:
+            translateY(-50px)
+            translateX(0)
+            rotate(0deg);
+    }
+
+    50%{
+        transform:
+            translateY(50vh)
+            translateX(80px)
+            rotate(180deg);
+    }
+
+    100%{
+        transform:
+            translateY(110vh)
+            translateX(-70px)
+            rotate(360deg);
+    }
+}
+
+
+/* BALLOONS */
+
+.join-balloons{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+}
+
+.balloon{
+    position:absolute;
+
+    width:42px;
+    height:52px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    opacity:.25;
+
+    animation:
+        balloonFloat 5s
+        ease-in-out infinite
+        alternate;
+}
+
+.balloon::after{
+    content:"";
+
+    position:absolute;
+
+    width:1px;
+
+    height:90px;
+
+    left:50%;
+    top:50px;
+
+    background:
+        rgba(130,200,255,.3);
+}
+
+.balloon.one{
+    left:25px;
+    top:25%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #d6f5ff,
+            #1677ff 60%,
+            #2439b8
+        );
+}
+
+.balloon.two{
+    right:25px;
+    top:40%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #e0d9ff,
+            #7657ff 60%,
+            #3219a1
+        );
+
+    animation-delay:1.5s;
+}
+
+@keyframes balloonFloat{
+
+    from{
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    to{
+        transform:
+            translateY(-30px)
+            rotate(5deg);
+    }
+}
+
+.after-content{
+    position:relative;
+
+    z-index:2;
+
+    max-width:800px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.after-title{
+    color:#cbd1d7;
+
+    font-size:
+        clamp(35px,6vw,65px);
+
+    font-weight:900;
+
+    text-shadow:
+        0 0 20px
+        rgba(114,232,255,.25);
+}
+
+.after-title span{
+    color:var(--cyan);
+}
+
+
+/* =====================================================
+   LUCKY 77
+===================================================== */
+
+.luck-box{
+    max-width:600px;
+
+    margin:35px auto 0;
+
+    text-align:center;
+
+    padding:35px;
+
+    border:
+        1px solid var(--line);
+
+    background:
+        rgba(255,255,255,.018);
+
+    border-radius:14px;
+}
+
+.luck-result{
+    width:100px;
+    height:100px;
+
+    margin:10px auto 25px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#cdd5dd;
+
+    font-size:32px;
+
+    font-weight:900;
+
+    border:
+        1px solid
+        rgba(114,232,255,.45);
+
+    box-shadow:
+        0 0 35px
+        rgba(47,156,255,.15);
+}
+
+.luck-result.spin{
+    animation:
+        luckSpin .6s ease;
+}
+
+@keyframes luckSpin{
+
+    0%{
+        transform:
+            scale(.7)
+            rotate(-20deg);
+    }
+
+    60%{
+        transform:
+            scale(1.15)
+            rotate(10deg);
+    }
+
+    100%{
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+.luck-btn{
+    padding:14px 25px;
+
+    border:0;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1677ff,
+            #713cff
+        );
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   SUCCESS
+===================================================== */
 
 .success{
     position:fixed;
@@ -798,7 +1275,6 @@ textarea:focus{
     display:none;
 
     justify-content:center;
-
     align-items:center;
 
     text-align:center;
@@ -808,8 +1284,8 @@ textarea:focus{
     background:
         radial-gradient(
             circle,
-            #101b35,
-            #03050a 65%
+            #14233b,
+            #05070b 65%
         );
 }
 
@@ -817,49 +1293,40 @@ textarea:focus{
     display:flex;
 }
 
-.success-content{
-    animation:successIn .7s ease;
-}
-
-@keyframes successIn{
-    from{
-        opacity:0;
-        transform:scale(.8);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
 .success-mark{
-    font-size:110px;
+    color:var(--cyan);
+
+    font-size:90px;
 
     font-weight:900;
 
-    letter-spacing:-10px;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 30px #2f9cff,
+        0 0 60px #713cff;
 
-    background:
-        linear-gradient(
-            90deg,
-            #4da3ff,
-            #a78bfa,
-            #6ee7ff
-        );
+    animation:
+        successGlow 1.5s infinite alternate;
+}
 
-    -webkit-background-clip:text;
+@keyframes successGlow{
 
-    color:transparent;
+    from{
+        transform:scale(1);
+    }
 
-    animation:gradientMove 3s linear infinite;
+    to{
+        transform:scale(1.08);
+    }
 }
 
 .success h2{
     margin-top:15px;
 
+    color:#cdd4dc;
+
     font-size:
-        clamp(25px,5vw,48px);
+        clamp(24px,5vw,46px);
 }
 
 .success p{
@@ -867,34 +1334,48 @@ textarea:focus{
 
     margin:20px auto;
 
-    color:var(--muted);
+    color:#7d8997;
 
-    font-size:12px;
+    font-size:11px;
 
     line-height:1.8;
 }
 
-.success-small{
+.success-btn{
+    margin-top:20px;
+
+    padding:14px 25px;
+
+    border:1px solid var(--line);
+
+    border-radius:5px;
+
+    background:
+        rgba(255,255,255,.03);
+
     color:var(--cyan);
 
-    font-size:9px;
-
-    letter-spacing:4px;
-
-    margin-top:25px;
+    cursor:pointer;
 }
 
-/* ================= FOOTER ================= */
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer{
-    padding:45px 7% 25px;
+    padding:
+        45px 7% 25px;
 
-    border-top:1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 
     text-align:center;
 }
 
 .footer-logo{
+    color:#bfc6ce;
+
     font-size:25px;
 
     font-weight:900;
@@ -909,9 +1390,9 @@ footer{
 footer p{
     margin-top:10px;
 
-    color:#596273;
+    color:#555f6c;
 
-    font-size:9px;
+    font-size:8px;
 }
 
 .footer-bottom{
@@ -919,14 +1400,18 @@ footer p{
 
     padding-top:20px;
 
-    border-top:1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 
-    color:#414958;
+    color:#3f4853;
 
     font-size:8px;
 }
 
-/* ================= RESPONSIVE ================= */
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:850px){
 
@@ -987,25 +1472,60 @@ footer p{
         font-size:40px;
     }
 
-    .success-mark{
-        font-size:75px;
+    .balloon{
+        opacity:.12;
     }
+
 }
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- LIVE BACKGROUND -->
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
 <div class="background">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
-    <div class="grid"></div>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
+
 </div>
 
+<div class="grid"></div>
 
-<!-- NAV -->
+<div class="rain" id="rain"></div>
+
+<div class="lightning" id="lightning"></div>
+
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+
 <nav>
 
     <div class="logo">
@@ -1026,35 +1546,46 @@ footer p{
 
         <a href="#members">TEAM</a>
 
-        <a href="#process">PROCESS</a>
+        <a href="#apply">APPLY</a>
 
-        <a href="#apply" class="join-nav">
-            APPLY
-        </a>
+        <a href="#after">77 ZONE</a>
 
     </div>
 
 </nav>
 
 
-<!-- HERO -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero" id="home">
 
     <div class="hero-content">
 
         <div class="hero-label">
-            TEAM 77 • WELCOME
+            TEAM 77 • ESTABLISHED 2026
         </div>
 
         <h1>
+
             WELCOME TO<br>
-            THE <span class="gradient-text">WORLD OF 77</span>
+
+            THE
+
+            <span class="gradient-text electric-text">
+                WORLD OF 77
+            </span>
+
         </h1>
 
         <p>
-            A place for people who want to be part
-            of something different. Explore the team,
-            meet the members and apply to join 77.
+
+            Welcome to Team 77.
+            Discover the members, explore the identity
+            and apply to become part of the 77 circle.
+
         </p>
 
         <div class="buttons">
@@ -1082,7 +1613,11 @@ footer p{
 </section>
 
 
-<!-- OWNER -->
+
+<!-- =====================================================
+     OWNER
+===================================================== -->
+
 <section id="owner">
 
     <div class="section-head">
@@ -1097,6 +1632,7 @@ footer p{
 
     </div>
 
+
     <div class="owner-card">
 
         <div class="owner-label">
@@ -1108,9 +1644,11 @@ footer p{
         </div>
 
         <p class="owner-description">
-            The founder and owner of Team 77.
-            Building the identity, direction and
-            future of the 77 community.
+
+            Founder and owner of Team 77,
+            responsible for the direction,
+            identity and future of the 77 circle.
+
         </p>
 
     </div>
@@ -1118,7 +1656,11 @@ footer p{
 </section>
 
 
-<!-- MEMBERS -->
+
+<!-- =====================================================
+     MEMBERS
+===================================================== -->
+
 <section id="members">
 
     <div class="section-head">
@@ -1132,8 +1674,8 @@ footer p{
         </h2>
 
         <p>
-            These are the current members carrying
-            the Team 77 identity.
+            Every member has their own identity,
+            talent and role inside Team 77.
         </p>
 
     </div>
@@ -1143,67 +1685,226 @@ footer p{
 
 
         <div class="member">
-            <div class="member-number">01 / 77</div>
-            <h3>AZAN<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                01 / 77
+            </div>
+
+            <h3>
+                AZAN<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                CREATIVE
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">02 / 77</div>
-            <h3>ENZO<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                02 / 77
+            </div>
+
+            <h3>
+                ENZO<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                LEADER
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">03 / 77</div>
-            <h3>IKRMA<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                03 / 77
+            </div>
+
+            <h3>
+                IKRMA<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                LOYAL
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">04 / 77</div>
-            <h3>HAMZA<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                04 / 77
+            </div>
+
+            <h3>
+                HAMZA<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                ENERGETIC
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">05 / 77</div>
-            <h3>W<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                05 / 77
+            </div>
+
+            <h3>
+                W<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                BACKBONE OF 77
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">06 / 77</div>
-            <h3>SYED<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                06 / 77
+            </div>
+
+            <h3>
+                SYED<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                STRATEGIST
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">07 / 77</div>
-            <h3>REX<span>-77</span></h3>
-            <div class="member-status">MEMBER</div>
+
+            <div class="member-number">
+                07 / 77
+            </div>
+
+            <h3>
+                SYED JOD<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                FEARLESS
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
 
 
         <div class="member">
-            <div class="member-number">08 / 77</div>
-            <h3>?</h3>
-            <div class="member-status">NEXT MEMBER</div>
+
+            <div class="member-number">
+                08 / 77
+            </div>
+
+            <h3>
+                REX<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                FUN & ENERGY
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
         </div>
+
+
+        <div class="member">
+
+            <div class="member-number">
+                09 / 77
+            </div>
+
+            <h3>
+                HUSSAIN AWAN<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                SUPPORTER
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
+        </div>
+
+
+        <div class="member">
+
+            <div class="member-number">
+                10 / 77
+            </div>
+
+            <h3>
+                DARWAISH<span>-77</span>
+            </h3>
+
+            <div class="member-talent">
+                MYSTERIOUS
+            </div>
+
+            <div class="member-status">
+                MEMBER
+            </div>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
-<!-- PROCESS -->
-<section id="process">
+
+<!-- =====================================================
+     PROCESS
+===================================================== -->
+
+<section>
 
     <div class="section-head">
 
@@ -1214,11 +1915,6 @@ footer p{
         <h2>
             ENTER THE 77
         </h2>
-
-        <p>
-            Three simple steps to become part
-            of the Team 77 circle.
-        </p>
 
     </div>
 
@@ -1233,13 +1929,12 @@ footer p{
             </div>
 
             <h3>
-                Explore
+                EXPLORE
             </h3>
 
             <p>
-                Discover the identity of Team 77,
-                meet the current members and
-                understand what 77 represents.
+                Discover the Team 77 identity
+                and meet the current members.
             </p>
 
         </div>
@@ -1252,13 +1947,12 @@ footer p{
             </div>
 
             <h3>
-                Apply
+                APPLY
             </h3>
 
             <p>
-                Answer a few questions and tell
-                us who you are and why you want
-                to become part of 77.
+                Fill the application form and
+                tell us about yourself.
             </p>
 
         </div>
@@ -1271,23 +1965,28 @@ footer p{
             </div>
 
             <h3>
-                Become 77
+                JOIN 77
             </h3>
 
             <p>
-                Submit your application and receive
-                your Team 77 membership confirmation.
+                Submit your application and
+                enter the 77 experience.
             </p>
 
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- APPLICATION -->
-<section class="form-section" id="apply">
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<section id="apply">
 
     <div class="section-head">
 
@@ -1300,7 +1999,7 @@ footer p{
         </h2>
 
         <p>
-            Tell us a little about yourself.
+            Fill the form below to join Team 77.
         </p>
 
     </div>
@@ -1309,6 +2008,7 @@ footer p{
     <div class="form-box">
 
         <form id="joinForm">
+
 
             <div class="form-grid">
 
@@ -1320,7 +2020,6 @@ footer p{
                     </label>
 
                     <input
-                        id="name"
                         type="text"
                         placeholder="Enter your name"
                         required>
@@ -1335,7 +2034,6 @@ footer p{
                     </label>
 
                     <input
-                        id="username"
                         type="text"
                         placeholder="Example: ALI-77"
                         required>
@@ -1350,7 +2048,6 @@ footer p{
                     </label>
 
                     <input
-                        id="age"
                         type="number"
                         placeholder="Your age"
                         min="10"
@@ -1367,7 +2064,6 @@ footer p{
                     </label>
 
                     <input
-                        id="city"
                         type="text"
                         placeholder="Your city"
                         required>
@@ -1378,44 +2074,13 @@ footer p{
                 <div class="field full">
 
                     <label>
-                        WHAT DO YOU DO?
+                        YOUR TALENT
                     </label>
 
-                    <select id="role" required>
-
-                        <option value="">
-                            Choose one
-                        </option>
-
-                        <option>
-                            Student
-                        </option>
-
-                        <option>
-                            Gamer
-                        </option>
-
-                        <option>
-                            Editor
-                        </option>
-
-                        <option>
-                            Coder
-                        </option>
-
-                        <option>
-                            Designer
-                        </option>
-
-                        <option>
-                            Content Creator
-                        </option>
-
-                        <option>
-                            Other
-                        </option>
-
-                    </select>
+                    <input
+                        type="text"
+                        placeholder="What are you good at?"
+                        required>
 
                 </div>
 
@@ -1423,29 +2088,15 @@ footer p{
                 <div class="field full">
 
                     <label>
-                        WHY DO YOU WANT TO JOIN TEAM 77?
+                        WHY DO YOU WANT TO JOIN 77?
                     </label>
 
                     <textarea
-                        id="reason"
                         placeholder="Write your answer..."
                         required></textarea>
 
                 </div>
 
-
-                <div class="field full">
-
-                    <label>
-                        WHAT MAKES YOU DIFFERENT?
-                    </label>
-
-                    <textarea
-                        id="different"
-                        placeholder="Tell us something about yourself..."
-                        required></textarea>
-
-                </div>
 
             </div>
 
@@ -1457,8 +2108,8 @@ footer p{
                     required>
 
                 <span>
-                    I agree to respect Team 77 and its
-                    members.
+                    I agree to respect Team 77
+                    and its members.
                 </span>
 
             </label>
@@ -1472,6 +2123,7 @@ footer p{
 
             </button>
 
+
         </form>
 
     </div>
@@ -1479,11 +2131,107 @@ footer p{
 </section>
 
 
-<!-- FOOTER -->
+
+<!-- =====================================================
+     AFTER JOINING
+===================================================== -->
+
+<section
+    class="after-join"
+    id="after">
+
+
+    <!-- FLOWERS -->
+
+    <div
+        class="flowers"
+        id="flowers">
+    </div>
+
+
+    <!-- BALLOONS -->
+
+    <div class="join-balloons">
+
+        <div class="balloon one"></div>
+
+        <div class="balloon two"></div>
+
+    </div>
+
+
+    <div class="after-content">
+
+        <div class="section-head">
+
+            <small>
+                AFTER JOINING TEAM 77
+            </small>
+
+        </div>
+
+
+        <div class="after-title">
+
+            WELCOME TO
+            <span>77</span>
+
+        </div>
+
+
+        <div class="luck-box">
+
+            <h3>
+                LUCKY 77
+            </h3>
+
+            <p
+                style="
+                margin:12px 0 20px;
+                color:#727d8b;
+                font-size:11px;
+                ">
+
+                Try your luck.
+
+            </p>
+
+
+            <div
+                class="luck-result"
+                id="luckResult">
+
+                ?
+
+            </div>
+
+
+            <button
+                class="luck-btn"
+                onclick="tryLuck()">
+
+                TRY YOUR LUCK
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
 
     <div class="footer-logo">
+
         TEAM <span>77</span>
+
     </div>
 
     <p>
@@ -1491,43 +2239,161 @@ footer p{
     </p>
 
     <div class="footer-bottom">
+
         © 2026 TEAM 77
+
     </div>
 
 </footer>
 
 
-<!-- SUCCESS -->
-<div class="success" id="success">
 
-    <div class="success-content">
+<!-- =====================================================
+     SUCCESS SCREEN
+===================================================== -->
+
+<div
+    class="success"
+    id="success">
+
+    <div>
 
         <div class="success-mark">
             77
         </div>
 
         <h2>
+
             YOU ARE SUCCESSFULLY<br>
             ADDED TO TEAM 77 NOW
+
         </h2>
 
         <p>
+
             Welcome to the 77 circle.
-            Your journey with Team 77 starts now.
+            Your Team 77 experience starts now.
+
         </p>
 
-        <div class="success-small">
-            WELCOME TO TEAM 77
-        </div>
+
+        <button
+            class="success-btn"
+            onclick="closeSuccess()">
+
+            ENTER 77 ZONE →
+
+        </button>
 
     </div>
 
 </div>
 
 
+
 <script>
 
-/* ================= SCROLL ================= */
+/* =====================================================
+   RAIN
+===================================================== */
+
+const rain =
+    document.getElementById("rain");
+
+for(let i=0;i<140;i++){
+
+    const drop =
+        document.createElement("div");
+
+    drop.className="drop";
+
+    drop.style.left =
+        Math.random()*100+"%";
+
+    drop.style.height =
+        (20 + Math.random()*30)+"px";
+
+    drop.style.animationDuration =
+        (.4 + Math.random()*.8)+"s";
+
+    drop.style.animationDelay =
+        Math.random()*2+"s";
+
+    drop.style.opacity =
+        .15 + Math.random()*.55;
+
+    rain.appendChild(drop);
+}
+
+
+/* =====================================================
+   LIGHTNING
+===================================================== */
+
+const lightning =
+    document.getElementById("lightning");
+
+function lightningFlash(){
+
+    lightning.classList.remove("flash");
+
+    void lightning.offsetWidth;
+
+    lightning.classList.add("flash");
+
+}
+
+function randomLightning(){
+
+    const delay =
+        4000 + Math.random()*9000;
+
+    setTimeout(function(){
+
+        lightningFlash();
+
+        randomLightning();
+
+    },delay);
+}
+
+randomLightning();
+
+
+/* =====================================================
+   FLOWERS
+   ONLY AFTER JOINING SECTION
+===================================================== */
+
+const flowers =
+    document.getElementById("flowers");
+
+for(let i=0;i<35;i++){
+
+    const flower =
+        document.createElement("div");
+
+    flower.className="flower";
+
+    flower.style.left =
+        Math.random()*100+"%";
+
+    flower.style.animationDuration =
+        (7 + Math.random()*8)+"s";
+
+    flower.style.animationDelay =
+        Math.random()*8+"s";
+
+    flower.style.opacity =
+        .2 + Math.random()*.5;
+
+    flowers.appendChild(flower);
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
 
 function goTo(id){
 
@@ -1540,79 +2406,83 @@ function goTo(id){
 }
 
 
-/* ================= FORM ================= */
+/* =====================================================
+   FORM
+===================================================== */
 
 document
-.getElementById("joinForm")
-.addEventListener("submit",function(e){
+    .getElementById("joinForm")
+    .addEventListener(
+        "submit",
+        function(e){
 
-    e.preventDefault();
+            e.preventDefault();
 
-    const name =
-        document
-        .getElementById("name")
-        .value
-        .trim();
+            document
+                .getElementById("success")
+                .classList.add("show");
 
-    const username =
-        document
-        .getElementById("username")
-        .value
-        .trim();
+            document.body.style.overflow="hidden";
 
-    const age =
-        document
-        .getElementById("age")
-        .value;
-
-    const city =
-        document
-        .getElementById("city")
-        .value
-        .trim();
-
-    const role =
-        document
-        .getElementById("role")
-        .value;
-
-    const reason =
-        document
-        .getElementById("reason")
-        .value
-        .trim();
-
-    const different =
-        document
-        .getElementById("different")
-        .value
-        .trim();
+        }
+    );
 
 
-    if(
-        !name ||
-        !username ||
-        !age ||
-        !city ||
-        !role ||
-        !reason ||
-        !different
-    ){
+/* =====================================================
+   CLOSE SUCCESS
+===================================================== */
 
-        return;
-
-    }
-
-
-    /* Show success screen */
+function closeSuccess(){
 
     document
         .getElementById("success")
-        .classList.add("show");
+        .classList.remove("show");
 
-    document.body.style.overflow="hidden";
+    document.body.style.overflow="";
 
-});
+    setTimeout(function(){
+
+        goTo("after");
+
+    },100);
+
+}
+
+
+/* =====================================================
+   LUCKY 77
+===================================================== */
+
+function tryLuck(){
+
+    const result =
+        document.getElementById("luckResult");
+
+    const numbers = [
+        "77",
+        "7",
+        "17",
+        "27",
+        "47",
+        "67",
+        "777"
+    ];
+
+    result.classList.remove("spin");
+
+    void result.offsetWidth;
+
+    result.classList.add("spin");
+
+    result.innerText =
+        numbers[
+            Math.floor(
+                Math.random() *
+                numbers.length
+            )
+        ];
+
+}
 
 </script>
 
