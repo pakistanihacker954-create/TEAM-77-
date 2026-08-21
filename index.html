@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TEAM 77</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#03050a;
+    --card:rgba(13,18,30,.72);
+    --blue:#4da3ff;
+    --cyan:#6ee7ff;
+    --purple:#8b5cf6;
+    --pink:#d946ef;
+    --white:#f5f8ff;
+    --muted:#8c96a8;
+    --line:rgba(255,255,255,.09);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+/* ================= LIVE BACKGROUND ================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    background:#03050a;
+}
+
+.orb{
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.23;
+    animation:orbMove 12s infinite alternate ease-in-out;
+}
+
+.orb.one{
+    background:#2563eb;
+    left:-150px;
+    top:-100px;
+}
+
+.orb.two{
+    background:#7c3aed;
+    right:-150px;
+    top:25%;
+    animation-delay:2s;
+}
+
+.orb.three{
+    background:#0891b2;
+    left:25%;
+    bottom:-250px;
+    animation-delay:4s;
+}
+
+@keyframes orbMove{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(100px,-60px) scale(1.2);
+    }
+}
+
+.grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:55px 55px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+}
+
+/* ================= NAV ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:72px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 7%;
+
+    background:rgba(3,5,10,.55);
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid var(--line);
+
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo-box{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:1px solid rgba(77,163,255,.55);
+
+    color:var(--cyan);
+
+    box-shadow:
+        0 0 25px rgba(77,163,255,.15);
+}
+
+.navlinks{
+    display:flex;
+    gap:28px;
+}
+
+.navlinks a{
+    color:#9aa4b5;
+
+    text-decoration:none;
+
+    font-size:9px;
+    font-weight:bold;
+
+    letter-spacing:1.7px;
+
+    transition:.3s;
+}
+
+.navlinks a:hover{
+    color:white;
+}
+
+.join-nav{
+    color:var(--cyan)!important;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:120px 20px 80px;
+
+    position:relative;
+}
+
+.hero-content{
+    max-width:950px;
+
+    animation:heroIn 1.3s ease;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.hero-label{
+    font-size:10px;
+
+    letter-spacing:5px;
+
+    color:var(--cyan);
+
+    margin-bottom:25px;
+
+    animation:pulseText 2s infinite;
+}
+
+@keyframes pulseText{
+    50%{
+        opacity:.55;
+    }
+}
+
+.hero h1{
+    font-size:clamp(55px,10vw,125px);
+
+    line-height:.9;
+
+    letter-spacing:-7px;
+
+    font-weight:950;
+}
+
+.gradient-text{
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #6ee7ff,
+            #8b5cf6,
+            #fff
+        );
+
+    background-size:250% auto;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    animation:gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+    to{
+        background-position:250% center;
+    }
+}
+
+.hero p{
+    max-width:600px;
+
+    margin:30px auto;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.9;
+}
+
+.buttons{
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:30px;
+}
+
+.btn{
+    padding:15px 25px;
+
+    border-radius:5px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.primary{
+    border:0;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 0 30px rgba(59,130,246,.18);
+}
+
+.primary:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(59,130,246,.25);
+}
+
+.secondary{
+    background:rgba(255,255,255,.03);
+
+    border:1px solid var(--line);
+
+    color:white;
+}
+
+.secondary:hover{
+    border-color:rgba(110,231,255,.5);
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:110px 7%;
+}
+
+.section-head{
+    text-align:center;
+
+    margin-bottom:55px;
+}
+
+.section-head small{
+    color:var(--cyan);
+
+    font-size:9px;
+
+    letter-spacing:4px;
+}
+
+.section-head h2{
+    margin-top:12px;
+
+    font-size:clamp(32px,5vw,55px);
+
+    letter-spacing:-2px;
+}
+
+.section-head p{
+    max-width:600px;
+
+    margin:16px auto;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+/* ================= OWNER ================= */
+
+.owner-card{
+    max-width:1000px;
+
+    margin:auto;
+
+    position:relative;
+
+    padding:50px;
+
+    border:1px solid rgba(77,163,255,.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,.12),
+            rgba(124,58,237,.06),
+            rgba(255,255,255,.015)
+        );
+
+    overflow:hidden;
+
+    border-radius:14px;
+}
+
+.owner-card::after{
+    content:"77";
+
+    position:absolute;
+
+    right:-20px;
+    bottom:-75px;
+
+    font-size:230px;
+
+    font-weight:900;
+
+    color:rgba(255,255,255,.025);
+}
+
+.owner-label{
+    color:var(--cyan);
+
+    font-size:9px;
+
+    letter-spacing:4px;
+}
+
+.owner-name{
+    margin-top:15px;
+
+    font-size:52px;
+
+    font-weight:900;
+}
+
+.owner-name span{
+    color:var(--cyan);
+}
+
+.owner-description{
+    margin-top:15px;
+
+    max-width:600px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+/* ================= MEMBERS ================= */
+
+.member-grid{
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+}
+
+.member{
+    min-height:190px;
+
+    padding:25px;
+
+    border:1px solid var(--line);
+
+    background:
+        rgba(255,255,255,.025);
+
+    border-radius:12px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.member::before{
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    filter:blur(60px);
+
+    opacity:0;
+
+    right:-30px;
+    top:-30px;
+
+    transition:.4s;
+}
+
+.member:hover{
+    transform:translateY(-7px);
+
+    border-color:
+        rgba(110,231,255,.3);
+}
+
+.member:hover::before{
+    opacity:.4;
+}
+
+.member-number{
+    color:#596273;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+}
+
+.member h3{
+    margin-top:50px;
+
+    font-size:20px;
+
+    position:relative;
+}
+
+.member h3 span{
+    color:var(--cyan);
+}
+
+.member-status{
+    position:absolute;
+
+    bottom:22px;
+
+    left:25px;
+
+    color:#687386;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+}
+
+/* ================= PROCESS ================= */
+
+.process{
+    max-width:1050px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+}
+
+.process-card{
+    padding:32px;
+
+    min-height:210px;
+
+    border:1px solid var(--line);
+
+    background:rgba(255,255,255,.02);
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.process-card:hover{
+    border-color:
+        rgba(77,163,255,.3);
+
+    transform:translateY(-5px);
+}
+
+.process-number{
+    font-size:11px;
+
+    color:var(--cyan);
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+.process-card h3{
+    margin-top:30px;
+
+    font-size:20px;
+}
+
+.process-card p{
+    margin-top:12px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+}
+
+/* ================= FORM ================= */
+
+.form-section{
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(59,130,246,.09),
+            transparent 55%
+        );
+}
+
+.form-box{
+    max-width:800px;
+
+    margin:auto;
+
+    padding:45px;
+
+    border:1px solid var(--line);
+
+    background:
+        rgba(5,8,15,.75);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:14px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.3);
+}
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:15px;
+}
+
+.field{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    color:#8e99aa;
+
+    font-size:8px;
+
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid var(--line);
+
+    outline:none;
+
+    background:#060912;
+
+    color:white;
+
+    border-radius:5px;
+
+    font-size:11px;
+
+    font-family:inherit;
+
+    transition:.25s;
+}
+
+textarea{
+    min-height:120px;
+
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:
+        rgba(77,163,255,.65);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(77,163,255,.06);
+}
+
+.agree{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+    color:#697487;
+
+    font-size:9px;
+
+    line-height:1.6;
+}
+
+.agree input{
+    width:auto;
+
+    accent-color:#4da3ff;
+}
+
+.submit{
+    width:100%;
+
+    margin-top:22px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color:white;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.submit:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(59,130,246,.2);
+}
+
+/* ================= SUCCESS ================= */
+
+.success{
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:
+        radial-gradient(
+            circle,
+            #101b35,
+            #03050a 65%
+        );
+}
+
+.success.show{
+    display:flex;
+}
+
+.success-content{
+    animation:successIn .7s ease;
+}
+
+@keyframes successIn{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.success-mark{
+    font-size:110px;
+
+    font-weight:900;
+
+    letter-spacing:-10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4da3ff,
+            #a78bfa,
+            #6ee7ff
+        );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    animation:gradientMove 3s linear infinite;
+}
+
+.success h2{
+    margin-top:15px;
+
+    font-size:
+        clamp(25px,5vw,48px);
+}
+
+.success p{
+    max-width:550px;
+
+    margin:20px auto;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+.success-small{
+    color:var(--cyan);
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    margin-top:25px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:45px 7% 25px;
+
+    border-top:1px solid var(--line);
+
+    text-align:center;
+}
+
+.footer-logo{
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:4px;
+}
+
+.footer-logo span{
+    color:var(--cyan);
+}
+
+footer p{
+    margin-top:10px;
+
+    color:#596273;
+
+    font-size:9px;
+}
+
+.footer-bottom{
+    margin-top:30px;
+
+    padding-top:20px;
+
+    border-top:1px solid var(--line);
+
+    color:#414958;
+
+    font-size:8px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:850px){
+
+    .navlinks{
+        display:none;
+    }
+
+    .member-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .process{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:80px 20px;
+    }
+
+    .hero h1{
+        letter-spacing:-4px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .member-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .form-box{
+        padding:25px 18px;
+    }
+
+    .owner-card{
+        padding:30px 25px;
+    }
+
+    .owner-name{
+        font-size:40px;
+    }
+
+    .success-mark{
+        font-size:75px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LIVE BACKGROUND -->
+<div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+    <div class="grid"></div>
+</div>
+
+
+<!-- NAV -->
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-box">
+            77
+        </div>
+
+        TEAM 77
+
+    </div>
+
+    <div class="navlinks">
+
+        <a href="#home">HOME</a>
+
+        <a href="#owner">OWNER</a>
+
+        <a href="#members">TEAM</a>
+
+        <a href="#process">PROCESS</a>
+
+        <a href="#apply" class="join-nav">
+            APPLY
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            TEAM 77 • WELCOME
+        </div>
+
+        <h1>
+            WELCOME TO<br>
+            THE <span class="gradient-text">WORLD OF 77</span>
+        </h1>
+
+        <p>
+            A place for people who want to be part
+            of something different. Explore the team,
+            meet the members and apply to join 77.
+        </p>
+
+        <div class="buttons">
+
+            <button
+                class="btn primary"
+                onclick="goTo('members')">
+
+                VIEW TEAM
+
+            </button>
+
+            <button
+                class="btn secondary"
+                onclick="goTo('apply')">
+
+                JOIN TEAM 77
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OWNER -->
+<section id="owner">
+
+    <div class="section-head">
+
+        <small>
+            THE PERSON BEHIND 77
+        </small>
+
+        <h2>
+            OWNER
+        </h2>
+
+    </div>
+
+    <div class="owner-card">
+
+        <div class="owner-label">
+            FOUNDER & OWNER
+        </div>
+
+        <div class="owner-name">
+            ABD<span>-77</span>
+        </div>
+
+        <p class="owner-description">
+            The founder and owner of Team 77.
+            Building the identity, direction and
+            future of the 77 community.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- MEMBERS -->
+<section id="members">
+
+    <div class="section-head">
+
+        <small>
+            THE 77 CIRCLE
+        </small>
+
+        <h2>
+            MEET THE TEAM
+        </h2>
+
+        <p>
+            These are the current members carrying
+            the Team 77 identity.
+        </p>
+
+    </div>
+
+
+    <div class="member-grid">
+
+
+        <div class="member">
+            <div class="member-number">01 / 77</div>
+            <h3>AZAN<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">02 / 77</div>
+            <h3>ENZO<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">03 / 77</div>
+            <h3>IKRMA<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">04 / 77</div>
+            <h3>HAMZA<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">05 / 77</div>
+            <h3>W<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">06 / 77</div>
+            <h3>SYED<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">07 / 77</div>
+            <h3>REX<span>-77</span></h3>
+            <div class="member-status">MEMBER</div>
+        </div>
+
+
+        <div class="member">
+            <div class="member-number">08 / 77</div>
+            <h3>?</h3>
+            <div class="member-status">NEXT MEMBER</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROCESS -->
+<section id="process">
+
+    <div class="section-head">
+
+        <small>
+            HOW IT WORKS
+        </small>
+
+        <h2>
+            ENTER THE 77
+        </h2>
+
+        <p>
+            Three simple steps to become part
+            of the Team 77 circle.
+        </p>
+
+    </div>
+
+
+    <div class="process">
+
+
+        <div class="process-card">
+
+            <div class="process-number">
+                01
+            </div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <p>
+                Discover the identity of Team 77,
+                meet the current members and
+                understand what 77 represents.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="process-number">
+                02
+            </div>
+
+            <h3>
+                Apply
+            </h3>
+
+            <p>
+                Answer a few questions and tell
+                us who you are and why you want
+                to become part of 77.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="process-number">
+                03
+            </div>
+
+            <h3>
+                Become 77
+            </h3>
+
+            <p>
+                Submit your application and receive
+                your Team 77 membership confirmation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- APPLICATION -->
+<section class="form-section" id="apply">
+
+    <div class="section-head">
+
+        <small>
+            YOUR TURN
+        </small>
+
+        <h2>
+            APPLY TO JOIN 77
+        </h2>
+
+        <p>
+            Tell us a little about yourself.
+        </p>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <form id="joinForm">
+
+            <div class="form-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        YOUR NAME
+                    </label>
+
+                    <input
+                        id="name"
+                        type="text"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        YOUR 77 NAME
+                    </label>
+
+                    <input
+                        id="username"
+                        type="text"
+                        placeholder="Example: ALI-77"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        AGE
+                    </label>
+
+                    <input
+                        id="age"
+                        type="number"
+                        placeholder="Your age"
+                        min="10"
+                        max="100"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        CITY
+                    </label>
+
+                    <input
+                        id="city"
+                        type="text"
+                        placeholder="Your city"
+                        required>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        WHAT DO YOU DO?
+                    </label>
+
+                    <select id="role" required>
+
+                        <option value="">
+                            Choose one
+                        </option>
+
+                        <option>
+                            Student
+                        </option>
+
+                        <option>
+                            Gamer
+                        </option>
+
+                        <option>
+                            Editor
+                        </option>
+
+                        <option>
+                            Coder
+                        </option>
+
+                        <option>
+                            Designer
+                        </option>
+
+                        <option>
+                            Content Creator
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        WHY DO YOU WANT TO JOIN TEAM 77?
+                    </label>
+
+                    <textarea
+                        id="reason"
+                        placeholder="Write your answer..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        WHAT MAKES YOU DIFFERENT?
+                    </label>
+
+                    <textarea
+                        id="different"
+                        placeholder="Tell us something about yourself..."
+                        required></textarea>
+
+                </div>
+
+            </div>
+
+
+            <label class="agree">
+
+                <input
+                    type="checkbox"
+                    required>
+
+                <span>
+                    I agree to respect Team 77 and its
+                    members.
+                </span>
+
+            </label>
+
+
+            <button
+                class="submit"
+                type="submit">
+
+                SUBMIT APPLICATION →
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-logo">
+        TEAM <span>77</span>
+    </div>
+
+    <p>
+        WELCOME TO THE WORLD OF 77
+    </p>
+
+    <div class="footer-bottom">
+        © 2026 TEAM 77
+    </div>
+
+</footer>
+
+
+<!-- SUCCESS -->
+<div class="success" id="success">
+
+    <div class="success-content">
+
+        <div class="success-mark">
+            77
+        </div>
+
+        <h2>
+            YOU ARE SUCCESSFULLY<br>
+            ADDED TO TEAM 77 NOW
+        </h2>
+
+        <p>
+            Welcome to the 77 circle.
+            Your journey with Team 77 starts now.
+        </p>
+
+        <div class="success-small">
+            WELCOME TO TEAM 77
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================= SCROLL ================= */
+
+function goTo(id){
+
+    document
+        .getElementById(id)
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* ================= FORM ================= */
+
+document
+.getElementById("joinForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const name =
+        document
+        .getElementById("name")
+        .value
+        .trim();
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+    const age =
+        document
+        .getElementById("age")
+        .value;
+
+    const city =
+        document
+        .getElementById("city")
+        .value
+        .trim();
+
+    const role =
+        document
+        .getElementById("role")
+        .value;
+
+    const reason =
+        document
+        .getElementById("reason")
+        .value
+        .trim();
+
+    const different =
+        document
+        .getElementById("different")
+        .value
+        .trim();
+
+
+    if(
+        !name ||
+        !username ||
+        !age ||
+        !city ||
+        !role ||
+        !reason ||
+        !different
+    ){
+
+        return;
+
+    }
+
+
+    /* Show success screen */
+
+    document
+        .getElementById("success")
+        .classList.add("show");
+
+    document.body.style.overflow="hidden";
+
+});
+
+</script>
+
+</body>
+</html>
